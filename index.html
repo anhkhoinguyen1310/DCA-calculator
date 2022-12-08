@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>DCA Calculator</title>
+  <!-- Add the Bootstrap CSS file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1>DCA Calculator</h1>
+
+    <form>
+      <div class="form-group">
+        <label>Total investment amount: $</label>
+        <input type="number" class="form-control" id="investment-amount" value="1000">
+      </div>
+      <div class="form-group">
+        <label>Investment interval:</label>
+        <select class="form-control" id="investment-interval">
+          <option value="1">Monthly</option>
+          <option value="4">Quarterly</option>
+          <option value="12">Yearly</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Number of intervals:</label>
+        <input type="number" class="form-control" id="number-of-intervals" value="12">
+      </div>
+      <button type="button" class="btn btn-primary" onclick="calculateInvestments()">Calculate</button>
+    </form>
+
+    <p>
+      <strong>Investment plan:</strong>
+      <br>
+      <span id="investment-plan"></span>
+    </p>
+
+    <script>
+      function calculateInvestments() {
+        // Get the user-specified inputs
+        const investmentAmount = document.getElementById("investment-amount").value;
+        const investmentInterval = document.getElementById("investment-interval").value;
+        const numberOfIntervals = document.getElementById("number-of-intervals").value;
+
+        // Calculate the amount to invest at each interval
+        const investmentPerInterval = investmentAmount / numberOfIntervals;
+
+        // Generate the investment plan
+        let investmentPlan = "";
+        for (let i = 0; i < numberOfIntervals; i++) {
+          investmentPlan += `Invest $${investmentPerInterval.toFixed(2)} at interval ${i+1}<br>`;
+        }
+
+        // Display the investment plan
+        document.getElementById("investment-plan").innerHTML = investmentPlan;
+      }
+    </script>
+  </div>
+</body>
+</html>
